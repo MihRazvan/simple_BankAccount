@@ -9,6 +9,10 @@ contract BankAccountTest is Test {
     BankAccount bankAccount;
     address user = vm.addr(1);
 
+    event Deposit(address indexed depositor, uint256 amount);
+    event WithdrawInitiated(address indexed withdrawer, uint256 amount);
+    event WithdrawCompleted(address indexed withdrawer, uint256 amount);
+
     // chatGPT spune ca e un mod dubios de a initializa contractul cand poti face bankAccount = new BankAccount();
     function setUp() external {
         DeployBankAccount deployBankAccount = new DeployBankAccount();
@@ -50,13 +54,31 @@ contract BankAccountTest is Test {
     }
 
     function testContractBalanceAfterWithdrawal() public {
+        vm.prank(user);
+        bankAccount.deposit{value: 1 ether}();
         uint256 initialContractBalance = address(bankAccount).balance;
+
+        vm.prank(user);
+        bankAccount.withdraw();
+
+        assertEq(address(bankAccount).balance, initialContractBalance - 1 ether); // Assumes full withdrawal
+    }
+
+    function testDepositEvent() public {
+        vm.expectEmit(true, false, false, true);
+        emit Deposit(user, 1 ether);
+        vm.prank(user);
+        bankAccount.deposit{value: 1 ether}();
+    }
+
+    function testWithdrawEvent() public {
         vm.prank(user);
         bankAccount.deposit{value: 1 ether}();
 
-        vm.prank(user);
-        bankAccount.withdraw(1 ether);
+        vm.expectEmit(true, false, false, true);
+        emit WithdrawInitiated(user, 1 ether);
 
-        assertEq(address(bankAccount).balance, initialContractBalance); // Assumes full withdrawal
+        vm.prank(user);
+        bankAccount.withdraw();
     }
 }
