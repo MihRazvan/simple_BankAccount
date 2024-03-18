@@ -11,9 +11,9 @@ contract BankAccount {
 
     function deposit() public payable {
         if (msg.value <= 0) {
-            revert("Must be >0 transaction");
+            revert("Deposit value must be greater than 0");
         }
-        addressToValue[msg.sender] = msg.value;
+        addressToValue[msg.sender] += msg.value;
         emit Deposit(msg.sender, msg.value);
     }
 
