@@ -5,9 +5,11 @@ import {Script} from "lib/forge-std/src/Script.sol";
 import {BankAccount} from "../src/BankAccount.sol";
 
 contract DeployBankAccount is Script {
-    function run() external {
+    function run() external returns (BankAccount) {
         vm.startBroadcast();
         BankAccount bankAccount = new BankAccount();
         vm.stopBroadcast();
+
+        return bankAccount;
     }
 }
