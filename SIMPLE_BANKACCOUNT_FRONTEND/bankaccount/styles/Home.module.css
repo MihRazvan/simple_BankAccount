@@ -1,0 +1,74 @@
+/* Add or update existing styles based on previous suggestions */
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+
+.walletConnectContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.balanceContainer {
+  /* Keep this for styling the balance text container specifically, but you might not need flex styles here */
+  margin: 2rem 0;
+}
+
+.balanceText {
+  font-size: 5rem;
+  font-weight: bold;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.depositInput {
+  padding: 0.5rem;
+  border: 2px solid #84309c;
+  background-color: #131313;
+  color: #e7e8e8;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.actionButton {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  background: linear-gradient(45deg, #bfa3da, #84309c, #c735b0);
+  color: #e7e8e8;
+  margin-bottom: 0.5rem;
+}
+
+.actionButton:hover {
+  opacity: 0.9;
+}
+
+/* Add your gradientText styles here */
+.gradientText0 {
+  background: -webkit-linear-gradient(#bfa3da, #84309c, #c735b0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+/* Ensure to include your media queries and other styles as needed */
