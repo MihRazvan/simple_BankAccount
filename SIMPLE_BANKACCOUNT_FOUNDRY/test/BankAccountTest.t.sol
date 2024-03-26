@@ -61,7 +61,10 @@ contract BankAccountTest is Test {
         vm.prank(user);
         bankAccount.withdraw();
 
-        assertEq(address(bankAccount).balance, initialContractBalance - 1 ether); // Assumes full withdrawal
+        assertEq(
+            address(bankAccount).balance,
+            initialContractBalance - 1 ether
+        ); // Assumes full withdrawal
     }
 
     function testDepositEvent() public {
